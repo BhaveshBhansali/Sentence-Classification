@@ -1,1 +1,1 @@
-Character based Sentence-Classification
+Sentence Classification: Character based learning
