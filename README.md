@@ -1,6 +1,6 @@
 # Sentence Classification: Character based learning
 ## Data Understanding, Idea and Data Preparation
-The text is unclear and not human understandable. If it would have words from any language (human understandable), then I would have used the \textbf{Word2Vec} model to generate vectors for this text. However, I am  using character level information (vectors) to train the model for classification.
+The text is unclear and not human understandable. If it would have words from any language (human understandable), then I would have used the Word2Vec model to generate vectors for this text. However, I am  using character level information (vectors) to train the model for classification.
 
 The idea came from the paper titled \href{https://arxiv.org/pdf/1502.01710.pdf}{Text Understanding from Scratch}. The author demonstrates text understanding from character level inputs, using convolutional neural network.
 
@@ -13,18 +13,18 @@ I use train data (90%) for training the models and dev data (10\%) for testing t
 ### Convolutional Neural Network
 In this architecture, I use different hyper-parameters like learning rate, epoch, batch size, dropout. I also use kernels of different dimensions.  
 #### conv2d-$>$maxpool2d-$>$fully connected
-First, I start with one convolution-maxpooling layer pair followed by one fully connected layer. I run the model with different hyper-parameters. I get an accuracy of around 56% after 10 epochs for hyper-parameters, learning rate=0.01 and batch size=200.
+First, I start with one convolution-maxpooling layer pair followed by one fully connected layer. I run the model with different hyper-parameters. I get an accuracy of around 19% after 10 epochs for hyper-parameters, learning rate=0.01 and batch size=200.
 #### conv2d-$>$maxpool2d-$>$conv2d-$>$maxpool2d-$>$fully connected
-Then, I extend the model with the addition of one more convolution-maxpooling layer pair. I run the model with different hyper-parameters. I still get accuracy around 73% for the hyper-parameters, learning rate=0.01 and batch size=300.
+Then, I extend the model with the addition of one more convolution-maxpooling layer pair. I run the model with different hyper-parameters. I still get accuracy around 23% for the hyper-parameters, learning rate=0.01 and batch size=300.
 ### Recurrent Neural Network
 In this architecture, I use different hyper-parameters like learning rate, epoch, batch size, dropout, rnn cells (rnn, lstm, gru), number of layers and number of hidden units. In this approach, the model learns embedding for each character at each step. Finally, this embedding weight is used for predictions.
 #### LSTM and GRU layers with generation of embedding
-I start with single LSTM and GRU layers. I run the model with different hyper-parameters. The model accuracy still does not increase from previous models. Then I extend the model 2 LSTM and GRU layers, the accuracy remains the constant (69\%) for different for epochs.
+I start with single LSTM and GRU layers. I run the model with different hyper-parameters. The model accuracy still does not increase from previous models. Then I extend the model 2 LSTM and GRU layers, the accuracy remains the constant (21\%) for different for epochs.
 #### LSTM and GRU layers with one hot vector representation of each character
-Till now, I used a unique id for each character in vector representation. Now, I use \textit{one hot vector} for each character of length 78 (since we have 78 unique characters). I run the RNN models of previous configurations with new this vector representation. The accuracy gets increase to 77%. The best hyper-parameters are learning rate=0.01, epochs=25, hidden units=300 and batch size=200.
+Till now, I used a unique id for each character in vector representation. Now, I use one hot vector for each character of length 78 (since we have 78 unique characters). I run the RNN models of previous configurations with new this vector representation. The accuracy gets increase to 27%. The best hyper-parameters are learning rate=0.01, epochs=25, hidden units=300 and batch size=200.
 ### Classical Classification Approaches
-Since the accuracy of the models is below par. Therefore, I thought to try with some classical classification approaches. I train the model with logistic regression, still I get the accuracy around 54% for different epochs. I also train the model with random forest classifiers for different number of estimators (tress), I get the best accuracy of 63% on dev data.
+Since the accuracy of the models is below par. Therefore, I thought to try with some classical classification approaches. I train the model with logistic regression, still I get the accuracy around 15% for different epochs. I also train the model with random forest classifiers for different number of estimators (tress), I get the best accuracy of 18% on dev data.
 ## Conclusion
-I tried different models based on character level vector representation. I also used 2 types of vector representations (unique id for each character and one hot vector of length 78 for each character). I got the best accuracy of 77% from one layer LSTM model using one hot vector representation. The accuracy is par below expected accuracy. I also see the model predicts the majority class labels (mostly classes 6,7 and 3). But, this might be due to the nature of the data itself or the data was not enough to learn the features.
+I tried different models based on character level vector representation. I also used 2 types of vector representations (unique id for each character and one hot vector of length 78 for each character). I got the best accuracy of 27% from one layer LSTM model using one hot vector representation. The accuracy is par below expected accuracy. I also see the model predicts the majority class labels (mostly classes 6,7 and 3). But, this might be due to the nature of the data itself or the data was not enough to learn the features.
 
 If it was some human readable representation of text, then I would have gone through the text and might have some actual insight of the data. 
