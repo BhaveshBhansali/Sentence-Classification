@@ -1,4 +1,4 @@
-# Sentence Classification: Character based learning
+# Sentence Classification: Character based deep learning
 ## Data Understanding, Idea and Data Preparation
 The text is unclear and not human understandable. If it would have words from any language (human understandable), then I would have used the Word2Vec model to generate vectors for this text. However, I am  using character level information (vectors) to train the model for classification.
 
